@@ -1,7 +1,26 @@
-These are the files for building the atlas firmware using micropython (https://github.com/micropython/micropython.git). Put the py files in the modules folder in /ports/rp2. Put the cmodules in /ports/rp2.
+# Atlas Firmware
+This repository contains the **custom MicroPython firmware files** for the Atlas robot.
 
-To change the firmware version name, change (git_tag = "v1.27.0-pibody") in the makeversionhdr.py file in the file_data parameter.
+It includes:
+- Python modules installed into the firmware `modules/` directory
+- Custom C module for the display (`cmodules/`)
 
-Build command: make BOARD=RPI_PICO_W USER_C_MODULES=cmodules
+## Firmware Versioning
+The firmware version string is defined in the MicroPython build system.
 
-your firmware.uf2 is in build-RPI_PICO_W
+To change the firmware version name, edit the following parameter in
+`makeversionhdr.py`:
+
+```python
+git_tag = "v1.26.1-atlas.v1.0.0"
+```
+
+## Building the Firmware
+```bash
+cd ~/micropython/ports/rp2
+rm -f -rf build-RPI_PICO_W/
+make clean
+make BOARD=RPI_PICO_W USER_C_MODULES=cmodules
+```
+
+
